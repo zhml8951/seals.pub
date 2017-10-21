@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
+#day=$(date +%F)
+if  $1 ;then
+    file=$1
+else
+    echo "需要输入导入文件名"
+fi
+echo "Begin backup...."
+imp eseals/biceng@eseals file=$file full=y 
+echo "Backup success."
+unset file

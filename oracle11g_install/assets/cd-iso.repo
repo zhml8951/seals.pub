@@ -1,0 +1,6 @@
+[cd-iso]
+name=CentOS6-local
+baseurl=file:///media
+enable=1
+gpgcheck=1
+gpgkey=file:///etc/rpm-gpg/

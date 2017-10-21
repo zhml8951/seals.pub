@@ -1,0 +1,44 @@
+# oracle Install kernel parameter 
+		
+		/proc/sys/kernel/sem
+			semmsl	250
+			semmns	32000
+			semopm	100
+			semmni	128
+		/proc/sys/kernel/shmmax
+			x86_64	physicalMemory/2		推荐物理内存的一半。最小值：536870912 
+		
+		/proc/sys/kernel/shmmni			4096
+		
+		/proc/sys/fs/file-max			6815744
+		/proc/sys/fs/aio-max-nr			1048576
+		
+		/proc/sys/net/ipv4/ip_local_port_range			9000/65500
+		
+		/proc/sys/net/core/rmem_default		262144
+		
+		/proc/sys/net/core/rmem_max			4194304
+		
+		/proc/sys/net/core/wmem_default		262144
+		
+		/proc/sys/net/core/wmem_max			1048576
+	
+		
+/etc/sysctl.conf		
+		fs.aio-max-nr = 1048576
+		fs.file-max = 6815744
+		kernel.shmall = 2097152
+		kernel.shmmax = 4294967295
+		kernel.shmmni = 4096
+		kernel.sem = 250 32000 100 128
+		net.ipv4.ip_local_port_range = 9000 65500
+		net.core.rmem_default = 262144
+		net.core.rmem_max = 4194304
+		net.core.wmem_default = 262144
+		net.core.wmem_max = 1048576
+
+/sbin/sysctl -p
+		
+		
+		
+		

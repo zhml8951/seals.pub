@@ -1,0 +1,27 @@
+
+Oracle Install pam setting ...
+		/etc/security/limits.conf
+
+### soft and hard limits for the file descriptor setting
+#ulimit -Sn
+#4096
+#ulimit -Hn
+#65536
+### Check the soft and hard limits for the number of processes available to a user. 
+#ulimit -Su
+#2047
+#ulimit -Hu
+#16384
+#### Check the soft limit for the stack setting. Ensure that the result is in the recommended range.
+# ulimit -Ss
+#10240
+#ulimit -Hs
+#32768
+#
+# update the resource limits in the /etc/security/limits.conf configuration file for the installation owner. 
+@oinstall       hard    nproc           16384
+@oinstall       soft    nproc           2047
+@oinstall       hard    nofile          65535
+@oinstall       soft    nofile          4096
+@oinstall       hard    stack           32768
+@oinstall       soft    stack           10240

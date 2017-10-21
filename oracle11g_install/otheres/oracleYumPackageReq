@@ -1,0 +1,102 @@
+oracle 安装需求包：
+	Red Hat Enterprise Linux 4
+				binutils-2.15.92.0.2-25 (s390x)
+				compat-libstdc++-33-3.2.3-47.3 (s390)
+				compat-libstdc++-33-3.2.3-47.3 (s390x)
+				gcc-3.4.6-11 (s390x)
+				gcc-c++-3.4.6-11 (s390x)
+				glibc-2.3.4-2.43 (s390)
+				glibc-2.3.4-2.43 (s390x)
+				glibc-devel-2.3.4-2.43 (s390)
+				glibc-devel-2.3.4-2.43 (s390x)
+				libaio-0.3.105-2 (s390)
+				libaio-0.3.105-2 (s390x)
+				libaio-devel-0.3.105-2 (s390)
+				libaio-devel-0.3.105-2 (s390x)
+				libgcc-3.4.6-11 (s390)
+				libgcc-3.4.6-11 (s390x)
+				libstdc++-3.4.6-10.0.1
+				libstdc++-3.4.6-10.0.1 (32-bit)
+				libstdc++-devel-3.4.6-10.0.1
+				libstdc++-devel-3.4.6-10.0.1 (x86_64)
+				make-3.80
+				pdksh
+				sysstat-5.0.5-25.el4 (s390x)
+							
+	Red Hat Enterprise Linux 5			
+				binutils-2.17.50.0.6-12.el5 (s390x)
+				compat-libstdc++-33-3.2.3-61 (s390)
+				compat-libstdc++-33-3.2.3-61 (s390x)
+				gcc-4.1.2-46.el5 (s390x)
+				gcc-c++-4.1.2-46.el5 (s390x)
+				glibc-2.5-42(s390)
+				glibc-2.5-42 (s390x)
+				glibc-devel-2.5-42 (s390)
+				glibc-devel-2.5-42 (s390x)
+				ksh
+				libaio-0.3.106-3.2 (s390)
+				libaio-0.3.106-3.2 (s390x)
+				libaio-devel-0.3.106-3.2 (s390)
+				libaio-devel-0.3.106-3.2 (s390x)
+				libgcc-4.1.2-46.el5 (s390)
+				libgcc-4.1.2-46.el5 (s390x)
+				libstdc++-4.1.2-46.el5 (s390)
+				libstdc++-4.1.2-46.el5 (s390x)
+				libstdc++-devel-4.1.2-46.el5 (s390x)
+				make-3.81
+				sysstat-7.0.2-3.el5 (s390x)
+				
+	Red Hat Enterprise Linux 6
+				binutils-2.20.51.0.2-5.28 (s390x)
+				compat-libstdc++-33-3.2.3-69.el6 (s390x)
+				gcc-4.4.6-3.el6 (s390x)
+				gcc-c++-4.4.6-3.el6 (s390x)
+				glibc-2.12-1.47.el6 (s390)
+				glibc-2.12-1.47.el6 (s390x)
+				glibc-devel-2.12-1.47.el6 (s390)
+				glibc-devel-2.12-1.47.el6 (s390x)
+				libaio-0.3.107-10.el6 (s390)
+				libaio-0.3.107-10.el6 (s390x)
+				libaio-devel-0.3.107-10.el6 (s390x)
+				libgcc-4.4.6-3.el6 (s390)
+				libgcc-4.4.6-3.el6 (s390x)
+				libstdc++-4.4.6-3.el6 (s390x)
+				libstdc++-devel-4.4.6-3.el6 (s390x)
+				make-3.81-19.el6 (s390x)
+				pdksh
+				sysstat-9.0.4-18.el6 (s390x)
+				
+	Red Hat Enterprise Linux 7			
+				binutils-2.23.52.0.1-30.el7.s390x
+				compat-libcap1-1.10-7.el7.s390x
+				cpp-4.8.2-16.el7.s390x
+				gcc-4.8.3-9.el7.s390x
+				gcc-c++-4.8.3-9.el7.s390x
+				glibc-2.17-78.el7.s390
+				glibc-2.17-78.el7.s390x
+				glibc-devel-2.17-78.el7.s390
+				glibc-devel-2.17-78.el7.s390x
+				glibc-headers-2.17-55.el7.s390x
+				ksh-20120801-22.el7.s390x
+				libaio-0.3.109-12.el7.s390
+				libaio-0.3.109-12.el7.s390x
+				libaio-devel-0.3.109-12.el7.s390
+				libaio-devel-0.3.109-12.el7.s390x
+				libgcc-4.8.3-9.el7.s390
+				libgcc-4.8.3-9.el7.s390x
+				libstdc++-4.8.3-9.el7.s390
+				libstdc++-4.8.3-9.el7.s390x
+				libstdc++-devel-4.8.3-9.el7.s390
+				libstdc++-devel-4.8.3-9.el7.s390x
+				libXi-1.2.2-2.1.el7.s390
+				libXi-1.2.2-2.1.el7.s390x
+				libXtst-1.2.2-2.1.el7.s390
+				libXtst-1.2.2-2.1.el7.s390x
+				make-3.82-21.el7.s390x
+				mpfr-3.1.1-4.el7.s390x
+				sysstat-10.1.5-7.el7.s390x
+				
+	安装Oracle集群RAC 需要cvuqdisk.rpm====		rpm -qi cvuqdisk 
+Install the Oracle Cluster Verification Utility ==== cvuqdisk.RPM   ==== Cluster Verificaton Utility(CUV)				
+				
+				
