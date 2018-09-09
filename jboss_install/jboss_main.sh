@@ -20,6 +20,7 @@ JAVA_ENV=.javaenv
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IP_PORT=80
 JBOSS_PORT=8080
+# *****  此参数需慎重,默认启用iptables. 关闭iptables设置为0;      *****
 IPTAB_ON=1
 JBOSS_AND_ORACLE=1
 
@@ -56,7 +57,7 @@ fi
 
 # search the largest partion to install jboss...
 JbossBase=`df -lkP | grep -v 'File.*' | grep -v 'tmp.*' | grep -v '.*boot' |grep -v '100%' | sort -k2 -n -r | awk '{print $NF}' | head -n1`
-if [ x"$JbossBase" = 'x' ]; then
+if [ x"$JbossBase" = 'x/' ]; then
     JbossBase='/home'
 fi
 
@@ -155,7 +156,7 @@ hostsCheck() {
 	local adapterUsed=$(ip addr show | grep $defNet | awk '{print $NF}')
 	
 	# host name get and set 
-	local hostName=`hostname -s`
+	local hostName=`hostname`
 	hosts_u=`grep -v 'localhost' /etc/hosts`
 	li=`wc -l /etc/hosts | cut -d' ' -f1`
 	to_hosts="echo $ipUsed $hostName"
@@ -580,7 +581,8 @@ status() {
 clean() {
     tmpFile="\$JBOSS_HOME/server/default/tmp"
     workFile="\$JBOSS_HOME/server/default/work"
-    if [ -n \$pid ]; then
+    pid=\$(jps | grep 'Main' | awk '{print \$1}')
+    if [ 'x'\$pid != 'x' ]; then
         echo "jboss is running. pid: \${pid}. clean cache must stop jboss."
         exit 1
     fi
@@ -591,6 +593,7 @@ clean() {
 }
 
 backup() {
+    WAR=\$WAR
     if [ \$JBOSS_CONF = 'default' ]; then
         depPath=\$JBOSS_HOME/server/default/deploy
     fi
@@ -716,7 +719,4 @@ echo '      4.  jboss deploy '
 echo '      5.  jboss help   '
 echo "====================================================="
 
-
 # Jboss install over.
-
- 
