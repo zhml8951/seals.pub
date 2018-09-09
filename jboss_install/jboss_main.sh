@@ -23,6 +23,7 @@ JBOSS_PORT=8080
 # *****  此参数需慎重,默认启用iptables. 关闭iptables设置为0;      *****
 IPTAB_ON=1
 JBOSS_AND_ORACLE=1
+WAR='ssm.war'
 
 test -z $DIR &&  { echo "install file path error!"; exit 1; }
 test `pwd` != $DIR && cd $DIR
@@ -593,7 +594,7 @@ clean() {
 }
 
 backup() {
-    WAR=\$WAR
+    WAR=$WAR
     if [ \$JBOSS_CONF = 'default' ]; then
         depPath=\$JBOSS_HOME/server/default/deploy
     fi
