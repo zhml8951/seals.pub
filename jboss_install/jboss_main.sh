@@ -25,32 +25,49 @@ IPTAB_ON=1
 JBOSS_AND_ORACLE=1
 WAR='ssm.war'
 
-test -z $DIR &&  { echo "install file path error!"; exit 1; }
+ccred='\033[0;31m'
+ccyellow='\033[0;33m'
+ccgreen='\033[32m'
+ccend='\033[0m'
+
+echo_red() {
+    echo -e "${ccred}$@${ccend}"
+}
+
+echo_yellow() {
+    echo -e "${ccyellow}$@${ccend}"
+}
+
+echo_green() {
+    echo -e "${ccgreen}$@${ccend}"
+}
+
+test -z $DIR &&  { echo_red "install file path error!"; exit 1; }
 test `pwd` != $DIR && cd $DIR
 
 # decide jboss status
 pid=`jps 2>/dev/null | grep -i 'main'| cut -d' ' -f1`
 if [ "x$pid" != 'x' ];then
-	echo "Jboss is running..."
+	echo_yellow "Jboss is running..."
 	exit 1
 fi
 
 if [ `id -u` != 0 ]; then
-	echo "Use this jboss install script must root!"
+	echo_red "Use this jboss install script must root!"
 	exit 2
 fi
 # decide jboss user 
 if ( id $JBOSS_USER >/dev/null 2>&1 ); then
 	Rjboss_home=`su - $JBOSS_USER -c'echo $JBOSS_HOME 2>/dev/null'`
 	if [ 'x' != 'x'$Rjboss_home ]; then 
-		echo "Jboss is installed. you cann't reinstall.."
-		echo "JBOSS_HOME=$Rjboss_home" 
+		echo_red "Jboss is installed. you cann't reinstall.."
+		echo_yellow "JBOSS_HOME=$Rjboss_home" 
 		exit 1
 	fi
 	read -p "jboss user is exist. [ Enter (Y|y) to <continue>, other to <Stop> ]: " prmp
 	test ! "$prmp" && exit 1
 	if [[ $prmp = 'y' || $prmp = 'Y' ]]; then
-		userdel $JBOSS_USER
+		userdel -r $JBOSS_USER
 	else
 		exit 6
 	fi
@@ -64,7 +81,7 @@ fi
 
 if [ ! -f "$JBOSS_ZIP" ]; then
 	JBOSS_ZIP=`ls | grep "^jboss.*\.zip"` || {
-		echo "Jboss_zip file $JBOSS_ZIP not exist.";
+		echo_red "Jboss_zip file $JBOSS_ZIP not exist.";
 		exit 3;
 	}
 fi
@@ -75,7 +92,7 @@ unzip -o $JBOSS_ZIP
 # select jdkFile
 if [ ! -f "$JDK_FILE" ]; then
 	JDK_FILE=`ls | grep "^jdk.*\.tar\.gz" | grep ".*7.*"` || {
-		echo "jdk7 file $JDK_FILE not exist! "
+		echo_red "jdk7 file $JDK_FILE not exist! "
 		exit 4
 	}
 fi
@@ -87,7 +104,7 @@ if [ ! -f "$JBOSS_FILE" ]; then
 	test -z $JBOSS_FILE && { echo "jboss file $JBOSS_FILE not exist!! "; exit 5; }
 fi
 JBOSS_FILE="$DIR/$JBOSS_FILE"
-echo "jbossFile=$JBOSS_FILE"
+echo_green "jbossFile=$JBOSS_FILE"
 
 # generate a random password 
 getPasswd() {
@@ -98,25 +115,25 @@ PASSWORD=`getPasswd`
 home_dir="${JbossBase}/${JBOSS_USER}"
 useradd --home-dir "$home_dir" --create-home --shell "$SHELL" --password "$PASSWORD" jboss 2>/dev/null
 echo "${PASSWORD}" > "$home_dir/password" ; chown $JBOSS_USER:$JBOSS_USER $home_dir/password
-echo "$JBOSS_USER password: $PASSWORD, the password in $home_dir/password"
+echo_red "$JBOSS_USER password: $PASSWORD, the password in $home_dir/password"
 subit="su - ${JBOSS_USER} -c "
 
 # jdk install
 tar_xFile="tar -xzv -f $JDK_FILE -C $home_dir"
 $subit "$tar_xFile " >/dev/null 2>&1
 jdkFolder=`ls $home_dir | grep "^jdk.*" | head -n1`
-echo "$jdkFolder installed ok."
+echo_green "$jdkFolder installed ok."
 JAVA_HOME="$home_dir/${jdkFolder}"
-echo "JAVA_HOME=$JAVA_HOME"
-echo "CLASSPATH=$CLASSPATH"
+echo_green "JAVA_HOME=$JAVA_HOME"
+echo_green "CLASSPATH=$CLASSPATH"
 
 # jboss install
 tar_xFile="tar -xzvf $JBOSS_FILE -C $home_dir"
 $subit "$tar_xFile " >/dev/null 2>&1
 jbossFolder=`ls $home_dir | grep "^jboss.*" | head -n1`
-echo $jbossFolder "installed Ok!."
+echo_green $jbossFolder "installed Ok!."
 JBOSS_HOME="$home_dir/$jbossFolder"
-echo "JBOSS_HOME=$JBOSS_HOME"
+echo_green "JBOSS_HOME=$JBOSS_HOME"
 
 # export JBOSS_PORT JBOSS_HOME JAVA_HOME CLASS_PATH
 # set iptables for jboss port
@@ -701,23 +718,23 @@ EOF
 
 chmod +x $bin_dir/jboss
 chown -R $JBOSS_USER:$JBOSS_USER $home_dir
-echo;echo;echo;echo;
-echo "Jboss  installed sucess. goodluck!!"
-echo "You can use PORT: $JBOSS_PORT, $IP_PORT "
-echo ""
-echo "======================================================"
-echo "       JAVA_HOME:  $JAVA_HOME "
-echo "      JBOSS_HOME:  $JBOSS_HOME "
-echo "      JBOSS_USER:  $JBOSS_USER "
-echo "      JBOSS_PORT:  $JBOSS_PORT  "
-echo "        WEB_PORT:  $IP_PORT    "
-echo "" 
-echo "      Manage Jboss, you can:   "
-echo '      1.  su - jboss  '
-echo '      2.  jboss start '
-echo '      3.  jboss stop  '
-echo '      4.  jboss deploy '
-echo '      5.  jboss help   '
-echo "====================================================="
+echo;
+echo_red "Jboss  installed sucess. goodluck!!"
+echo_green "You can use PORT: $JBOSS_PORT, $IP_PORT "
+echo_green ""
+echo_green "======================================================"
+echo_green "       JAVA_HOME:  $JAVA_HOME "
+echo_green "      JBOSS_HOME:  $JBOSS_HOME "
+echo_green "      JBOSS_USER:  $JBOSS_USER "
+echo_green "      JBOSS_PORT:  $JBOSS_PORT  "
+echo_green "        WEB_PORT:  $IP_PORT    "
+echo_green "" 
+echo_green "      Manage Jboss, you can:   "
+echo_green '      1.  su - jboss  '
+echo_green '      2.  jboss start '
+echo_green '      3.  jboss stop  '
+echo_green '      4.  jboss deploy '
+echo_green '      5.  jboss help   '
+echo_green "====================================================="
 
 # Jboss install over.
