@@ -6,5 +6,6 @@
     "editor.fontFamily": "Consolas,\"DejaVu Sans Mono\"",
     "editor.fontLigatures": true,
     "markdown.preview.lineHeight": 1,
-    "editor.fontWeight": "bold"
+    "editor.fontWeight": "bold",
+    "files.eol": "\n"
 }

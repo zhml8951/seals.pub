@@ -68,9 +68,9 @@ unzipFile() {
 		sum2=`cksum $file2 | awk '{print $1}'`
 		    
 		if [[ $sum1 -eq ${file1-cksum} && $sum2 -eq ${file2-cksum} ]]; then
-		    unzip 
-		
+		true
+		fi
 	else
 	    echo "Oracle package is not "
-	
+	fi
 }
