@@ -46,7 +46,7 @@ test -z $DIR &&  { echo_red "install file path error!"; exit 1; }
 test `pwd` != $DIR && cd $DIR
 
 # decide jboss status
-pid=`jps 2>/dev/null | grep -i 'main'| cut -d' ' -f1`
+pid=`ps -ef | grep java | grep jboss `
 if [ "x$pid" != 'x' ];then
 	echo_yellow "Jboss is running..."
 	exit 1
