@@ -1,0 +1,124 @@
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-06_17:17:24 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-06_17:18:00 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-11_12:16:53 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-18_21:18:48 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-18_21:18:52 [0m
+[32m***LOG. Oracle package file: /mnt/nfsFiles/oracle11g/linux.x64_11gR2_database_1of2.zip is ok..[0m
+[32m***LOG. Oracle package file: /mnt/nfsFiles/oracle11g/linux.x64_11gR2_database_2of2.zip is ok..[0m
+[32mNo oracle processes. install continue. >>>>[0m
+[32m****LOG. begin install oracle...[0m
+[32moracle depend packages begining install.>>>>>>[0m
+[32m***LOG. Setting Kernel Parameters...[0m
+shmmax in response file:536870912
+shmmax in /etc/sysctl.conf:68719476736
+The value for shmmax in response file is not greater than value for shmmax in /etc/sysctl.conf file. Hence not changing it.
+shmmax for current session:68719476736
+The value for shmmax is not greater than value of shmmax for current session. Hence not changing it.
+shmmni for current session:4096
+The value for shmmni in response file is not greater than value of shmmni for current session. Hence not changing it.
+shmall in response file:2097152
+shmall in /etc/sysctl.conf:4294967296
+The value for shmall in response file is not greater than value for shmall in /etc/sysctl.conf file. Hence not changing it.
+shmall for current session:4294967296
+The value for shmall in response file is not greater than value of shmall for current session. Hence not changing it.
+semmsl in response file:250
+semmsl for current session:250
+The value for semmsl in response file is not greater than value of semmsl for current session. Hence not changing it.
+semmsl in /etc/sysctl.conf:
+semmns in response file:32000
+semmns for current session:32000
+The value for semmns in response file is not greater than value of semmns for current session. Hence not changing it.
+semmns in /etc/sysctl.conf:
+semopm in response file:100
+semopm for current session:32
+semopm in /etc/sysctl.conf:
+semmni in response file:128
+semmni for current session:128
+The value for semmni in response file is not greater than value of semmni for current session. Hence not changing it.
+semmni in /etc/sysctl.conf:
+file-max for current session:1620423
+ip_local_port_range in response file:9000 65500
+ip_local_port_range in /etc/sysctl.conf: 
+ip_local_port_range for current session:32768 60999
+rmem_default for current session:124928
+wmem_default for current session:124928
+rmem_max for current session:124928
+wmem_max for current session:124928
+aio-max-nr for current session:65536
+Setting Shell limits ...
+Max processes hard limit in response file:16384
+Max processes softlimit in response file: 2047
+Stack limit in response file:10240
+Stack limit in response file:32768
+File open max hard limit in response file:65535
+File open max softlimit in response file:4096
+[32m***LOG. Begin... unzip packages. [0m
+[32m***LOG. end... unzip packages. [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-18_21:28:32 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-18_21:28:41 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-09-18_21:28:54 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-10-08_10:26:37 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-10-08_10:26:47 [0m
+[32m***LOG. Oracle package file: /mnt/nfsFiles/oracle11g/linux.x64_11gR2_database_1of2.zip is ok..[0m
+[32m***LOG. Oracle package file: /mnt/nfsFiles/oracle11g/linux.x64_11gR2_database_2of2.zip is ok..[0m
+[32mNo oracle processes. install continue. >>>>[0m
+[32m****LOG. begin install oracle...[0m
+[32moracle depend packages begining install.>>>>>>[0m
+[32m***LOG. Setting Kernel Parameters...[0m
+shmmax in response file:536870912
+shmmax in /etc/sysctl.conf:68719476736
+The value for shmmax in response file is not greater than value for shmmax in /etc/sysctl.conf file. Hence not changing it.
+shmmax for current session:68719476736
+The value for shmmax is not greater than value of shmmax for current session. Hence not changing it.
+shmmni for current session:4096
+The value for shmmni in response file is not greater than value of shmmni for current session. Hence not changing it.
+shmall in response file:2097152
+shmall in /etc/sysctl.conf:4294967296
+The value for shmall in response file is not greater than value for shmall in /etc/sysctl.conf file. Hence not changing it.
+shmall for current session:4294967296
+The value for shmall in response file is not greater than value of shmall for current session. Hence not changing it.
+semmsl in response file:250
+semmsl for current session:250
+The value for semmsl in response file is not greater than value of semmsl for current session. Hence not changing it.
+semmsl in /etc/sysctl.conf:
+semmns in response file:32000
+semmns for current session:32000
+The value for semmns in response file is not greater than value of semmns for current session. Hence not changing it.
+semmns in /etc/sysctl.conf:
+semopm in response file:100
+semopm for current session:32
+semopm in /etc/sysctl.conf:
+semmni in response file:128
+semmni for current session:128
+The value for semmni in response file is not greater than value of semmni for current session. Hence not changing it.
+semmni in /etc/sysctl.conf:
+file-max for current session:2384939
+ip_local_port_range in response file:9000 65535
+ip_local_port_range in /etc/sysctl.conf: 
+ip_local_port_range for current session:32768 60999
+rmem_default for current session:124928
+wmem_default for current session:124928
+rmem_max for current session:124928
+wmem_max for current session:124928
+aio-max-nr for current session:65536
+Setting Shell limits ...
+Max processes hard limit in response file:16384
+Max processes softlimit in response file: 2047
+Stack limit in response file:10240
+Stack limit in response file:32768
+File open max hard limit in response file:65535
+File open max softlimit in response file:4096
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-10-08_11:32:59 [0m
+[32m****LOG. This is the oracle install script logs file. [0m
+[32m****LOG. Script begin timestamp:  2017-10-08_11:33:08 [0m

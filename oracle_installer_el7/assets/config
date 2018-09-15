@@ -1,0 +1,103 @@
+# --maininstall -config files
+# install the config file 2017-07-08 zheng_mingli@eseals.cn
+#
+# 	NAME
+#		config.conf
+#
+#	DESCRIPTION
+#		<installing oracle 11G.R2 all configuration declares/defines> 
+#
+#	NOTES
+#
+ORAUSER='oracle'
+ORAGROUP=oinstall
+ORAGROUPS=dba
+#
+ORACLE_HOST=''
+ORACLE_ROOT='/u01'
+ORACLE_BASE="$ORACLE_ROOT/app/oracle"
+ORACLE_HOME="$ORACLE_BASE/product/11.2.0/db_1"
+INVENTORY_LOCATION="${ORACLE_BASE%/*}/oraInventory"
+ORACLE_SID='eseals'
+HOST_IP=''
+ORA_PORT=1521
+CHECK_NETWORK="flase"
+IPTAB_ON="True"
+# install in new environment
+NEW_ENV="true"
+# check running oracle processes
+CHECK_ORACLE_PID="True"
+# check system release
+CHECK_SYSTEM_RELEASE="true"
+MOTHOD_INSTALL_OCFS="false"
+# setting the kernel parameter 
+SET_KERNEL_PARAMETERS="True"
+KERNEL_PARAMETERS_FILE=''
+SYSCTL_LOC='/sbin/sysctl'
+LOCAL_YUM="false"
+CONFIG_YUM="False"
+ENABLE_MOUNT="False"
+START_NSCD="false"
+SET_SHELL_LIMITS="true"
+# change the current run level
+CHANGE_CURRENT_RUNLEVEL="false"
+# setup multiple ip 
+SETUP_VIRTUAL_IP="false"
+SETUP_PRIVATE_NODES="false"
+#
+CHANGE_PRIMARY_GROUP="false"
+INSTALL_OCFS_MODULE="false"
+INSTALL_PACKAGES="true"
+# sys default release
+SYS_RELEASE=6
+#
+CHECK_ZIP_FILE="true"
+#
+# oracle packages zip files
+ZIP_FILE_1="linux.x64_11gR2_database_1of2.zip"
+ZIP_FILE_2="linux.x64_11gR2_database_2of2.zip"
+ZIP_FILE_1_SUM='08763'
+ZIP_FILE_1_SIZE='1210224'
+ZIP_FILE_2_SUM='43316'
+ZIP_FILE_2_SIZE='1085368'
+IGNORE_SUM='true'
+# response file 
+RSP_FILE=$1
+# log files 
+LOG_FILES=$2
+# time format
+TIME="date +%Y-%m-%d_%H:%M:%S"
+#
+PACKAGES_OS6="binutils.x86_64 compat-libstdc++-33 ksh elfutils-libelf elfutils-libelf-devel glibc glibc-common glibc-devel gcc gcc-c++ libaio libaio-devel libaio-devel.i686 libgcc libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel"
+PACKAGES_OS7="binutils.x86_64 compat-libcap cpp gcc gcc-c++ glibc glibc-devel glibc-devel glibc-headers ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel libXi libXtst make mpfr sysstat unixODBC unixODBC-devel"
+#
+# kernel parameters 
+KERNEL_PARAMETERS_FILE=
+SHMMAX=536870912
+SHMMNI=4096
+SHMALL=2097152
+SEMMSL=250
+SEMMNS=32000
+SEMOPM=100
+SEMMNI=128
+FILE_MAX_KERNEL=6815744
+IP_LOCAL_PORT_RANGE='9000 65535'
+RMEM_DEFAULT=262144
+WMEM_DEFAULT=262144
+RMEM_MAX=4194304
+WMEM_MAX=1048576
+AIO_MAX_SIZE=
+AIO_MAX_NR=1048576
+#shell limits 
+SET_SHELL_LIMITS=True
+MAX_PROCESSES_HARDLIMIT=16384
+MAX_PROCESSES_SOFTLIMIT=2047
+MAX_STACK_SOFTLIMIT=10240
+MAX_STACK_HARDLIMIT=32768
+FILE_OPEN_MAX_HARDLIMIT=65535
+FILE_OPEN_MAX_SOFTLIMIT=4096
+
+DMP_FILE=
+TABLESPACE_FILE=
+DBCA_RSP=
+NETCA_RSP=

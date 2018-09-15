@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
+day=$(date +%F)
+echo "Begin backup...."
+exp eseals/biceng@eseals file=eseals_$day.dmp log=eseals_$day.log owner=eseals rows=y
+unset day

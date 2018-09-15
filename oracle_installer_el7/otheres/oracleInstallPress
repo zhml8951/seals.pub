@@ -1,0 +1,97 @@
+oracle 总体步骤：
+
+	1. checkPrerequisites	(检查需求)	1.2 Planning the Installation
+		a. hardSoft_cert		软硬件检测
+			1.  must root
+			2.  Memory Requirements
+				Minimum: 1 GB of RAM
+				Between 1G - 2G 	swap = 2G-4G		grep MemTotal /proc/meminfo
+				Between 2G - 16G	swap = mem			grep SwapTotal /proc/meminfo
+				more 16G			swap = 16G
+				Automatic Memory Management feature require more shared memory(/dev/shm)
+					(MEMMORY_MAX_TARGET---- MEMMORY_TARGET) 
+					df -h /dev/shm  shm容量必须在 512*PROCESSES	当4cpu时 4*512=2048		grep 'processor' /proc/cpuinfo | wc -l
+					如果shm问题提示ORA-00845 ==>    mount -t tmpfs shmfs -o SIZE=4g /dev/shm
+					/etc/fstab ===>  shmfs /dev/shm tmpfs size=7g 0
+			3.  System Architecture
+				uname -m	确定系统 x86_64 或 其它， 这需要与Oracle安装包适配
+			4.  Disk Space Requirements
+					df -h /tmp		> 1G
+					Enterprise Edition 	4.8G	+ DataFiles 1.8G
+					Standard Edition 	4.6G	+ DataFiles 1.5G
+			5.  System Requirements 			(lsb_release -id)
+					Red Hat Enterprise Linux 4 Update 7		
+					Red Hat Enterprise Linux 5 Update 2
+					Red Hat Enterprise Linux 6
+					Red Hat Enterprise Linux 7
+			6.  Kernel Requirements 		(uname -r)
+					On Red Hat Enterprise Linux 5 Update 2	(2.6.18 or later)
+					On Red Hat Enterprise Linux 5 Update 5 	(2.6.18 or later)
+					On Red Hat Enterprise Linux 6			(2.6.32-71.el6.x86_64 or later)
+					On Red Hat Enterprise Linux 7			(3.10.0-54.0.1.el7.x86_64 or later)
+			7.	Oracle Database Package Requirements for Linux x86-64	(详见OracleYumPackageReq)
+			
+			8.	Verifying UDP and TCP Kernel Parameters 
+					
+					/proc/sys/net/ipv4/ip_local_port_range	(32768	61000)====> echo 9000 65500 > /proc/sys/net/ipv4/ip_local_port_range
+					
+					详见OracleKernelParameter
+					
+			9.	Confirming Host Name Resolution		
+					/etc/hosts		配置 hosts 对应IP 同Jboss 实现ping `hostname` 
+								Multihomed Computers (多宿主)(也可以是多网卡)
+								export ORACLE_HOSTNAME=somehost.example.local;
+					
+			10.	Disabing Transparent HugePages	 (禁用透明大页，对Oracle性能及稳定性影响) 	
+					cat /sys/kernel/mm/redhat_transparent_hugepage/enabled		===> [always]never	默认启用。或者无此文件
+					A.  vim /etc/grub.conf		add ==>   transparent_hugepage=never
+					B.	vim /etc/rc.local		if test -f /sys/kernel/mm/redhat_transparent_hugepage/enabled; then
+													echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+												fi
+					C.	echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled	(此方法不用重启)
+			
+			11.	Creating Required Operation System Groups and Users
+					groupadd oinstall	dba(OSDBA)		oper(OSOPER)		
+					
+					#Oracle Grid Infrastructure Groups for Job Role Installations ASM 	asmdba(OSDBA)
+					
+					要确认系统是否安装过Oracle
+					/etc/oraInst.loc 显示当前oracle 信息.    grep oinstall /etc/group
+					
+				cat /etc/oraInst		
+										inventory_loc=/u01/app/oraInventory
+										inst_group=oinstall
+					/usr/sbin/groupadd oinstall
+					groupadd  dba
+					groupadd oper
+					
+				id oracle 				id grid
+				
+					useradd -u 502 -g oinstall -G dba --home-dir /home/u01/app/oracle -m oracle
+					// 	/usr/sbin/usermod -g oinstall -G dba,asmdba[,oper] oracle
+					
+			12.	Checking Resource Limits for Oracle Software Installation users
+					vim /etc/security/limits.conf					详见 OracleInstallPamSet
+						@oinstall       hard    nproc           16384
+						@oinstall       soft    nproc           2047
+						@oinstall       hard    nofile          65535
+						@oinstall       soft    nofile          4096
+						@oinstall       hard    stack           32768
+						@oinstall       soft    stack           10240	
+						
+						
+			13. Identifying and Creating Oracle Base Directory
+				cat /etc/oratab		显示oracle home 相关信息 确认ORACLE_BASE
+				
+					mkdir -p /u01/app/oracle
+					chown -R oracle:oinstall /u01/app/oracle
+					chmod -R 775 /u01/app/oracle
+					
+					Default location database file directory $ORACLE_BASE/oradata
+					
+				
+		b. interactive installation types	交互式安装			(Oracle Universal Installer)OUI
+		c. Automated installation Methods Using Response Files
+			1- SilentMode == 				-slient
+			2- Response File Mode ==		
+		
