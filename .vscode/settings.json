@@ -3,8 +3,9 @@
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.fontWeight": "bold",
     "terminal.integrated.fontWeightBold": "normal",
-    "editor.fontFamily": "Consolas,\"DejaVu Sans Mono\"",
+    "editor.fontFamily": "\"Droid Sans Mono\",Consolas,\"DejaVu Sans Mono\"",
     "editor.fontLigatures": true,
     "markdown.preview.lineHeight": 1,
-    "editor.fontWeight": "bold"
+    "editor.fontWeight": "bold",
+    "editor.fontSize": 16
 }
