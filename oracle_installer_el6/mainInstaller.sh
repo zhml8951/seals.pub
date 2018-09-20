@@ -7,7 +7,7 @@
 # 
 # 	Authors:      zheng_mingli@eseals.cn
 # 
-# 	Modify:		20170608
+# 	Modify:		20190911
 #
 #
 set -e
@@ -315,18 +315,6 @@ config_aliyum() {
 	fi
 
 	return 0
-	# The system current yum url check speed no run
-	# # look yum url
-	# _get_url="cat \$repo_f | grep -v '^#' | grep -E '^mirror|baseurl.*' | head -n1"
-	# for _repo_f in $(ls $repos_path); do
-	# 	local yum_url=`eval $_get_url`
-	# 	yum_url=${yum_url#*//}; yum_url=${yum_url%%/*}
-	# 	# CentOS-Base.repo file lookup
-	# 	if check_network $yum_url; then
-	# 		echo ${_repo_f} | grep 'Base' >/dev/null 2>&1 && return 0 
-	# 	fi
-	# done
-
 }
 #
 # oracle depend package install

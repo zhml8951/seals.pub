@@ -133,7 +133,7 @@ JBOSS_HOME="$home_dir/$jbossFolder"
 echo_green "JBOSS_HOME=$JBOSS_HOME"
 
 # set firewall for jboss 
-function set_iptab () {
+function set_firewall () {
 	# modify the jboss service port
 	server_xml="$JBOSS_HOME/server/default/deploy/jboss-web.deployer/server.xml"
 	r_port=`sed -n '/<Conn.*/p' $server_xml | head -n1 | awk '{print $2}' | cut -d'=' -f2 | sed 's/\"//g'`
@@ -168,32 +168,32 @@ hostsCheck() {
         if grep "^$ipUsed" /etc/hosts | grep "$hostName$"; then 
             echo_green "/etc/hosts config success!......";
         else
-            if grep "^$ipUsed" /etc/hosts && grep ""  ## //TODO
+            if grep "^$ipUsed" /etc/hosts >/dev/null 2>&1 && grep "$hostName" /etc/hosts >/dev/null 2>&1; then
+                $to_hosts >> /etc/hosts
+                echo_green "/etc/hosts config success!......";
+            else
+                sed -i \/$ipUsed\/d /etc/hosts
+                sed -i \/$hostName\/d /etc/hosts
+                $to_hosts >> /etc/hosts
+                echo_green "/etc/hosts config success!......";
+            fi
         fi
     else
         cat << EOF >/etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 EOF
-        to_hosts >> /etc/hosts
+        $to_hosts >> /etc/hosts
+        echo_yellow "/etc/hosts config reset success!....."
     fi
-	
-	
-		
-		hosts_i=`echo "$hosts_u" | cut -d' ' -f1` && hosts_n=`echo "$hosts_u" | cut -d' ' -f2`
-		if [ $hosts_i != $ipUsed -o $hosts_n != $hostName ];then
-			sed -i \/$hosts_i\/d /etc/hosts
-			$to_hosts >> /etc/hosts
-		fi 
-	grep -v 'localhost' /etc/hosts
 }
 
 
-if [ $IPTAB_ON = 1 ]; then
-	set_iptab
+if [ $FIREWALL_ON = 1 ]; then
+	set_firewall
 else
-	/etc/init.d/iptables stop
-	chkconfig iptables off
+	echo_yellow "System firewalld is not change..."
+	echo_yellow "The web services only jboss port 8080.... "
 fi
 
 # check the /etc/hosts file 

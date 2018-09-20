@@ -12,7 +12,6 @@
 ORAUSER='oracle'
 ORAGROUP=oinstall
 ORAGROUPS=dba
-#
 ORACLE_HOST=''
 ORACLE_ROOT='/u01'
 ORACLE_BASE="$ORACLE_ROOT/app/oracle"

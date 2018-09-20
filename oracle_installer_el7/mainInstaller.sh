@@ -7,7 +7,7 @@
 # 
 # 	Authors:      zheng_mingli@eseals.cn
 # 
-# 	Modify:		20170608
+# 	Modify:		20180908
 #
 #
 set -e
@@ -200,7 +200,6 @@ yum_local() {
 			echo_red '###.ERROR. No specify image file. DVD-rom no image. ' | tee -a $log_file
 			exit 1
 		fi
-
 	else
 		if [ -f $_iso_file ]; then
 			eval $_dd_test || {
@@ -1293,6 +1292,7 @@ set_shell_limits() {
      fi
  fi  
 }
+
 mk_ora_dir(){
 	ora_path=`df -lP | grep -v 'Filesystem' | grep -v 'tmpfs' | sort -k2 -n -r | head -n1 | awk '{print $NF}'`
 	if [ "$ora_path" == '/' ]; then
@@ -1447,8 +1447,10 @@ fi
 END
 
 su -l $ORAUSER -c "sh $imp_auto"
-
 }
+
+#
+#
 set_iptables(){
 	IPTABLES="/sbin/iptables"
 	$IPTABLES -t filter -L INPUT | grep -v '^Chain' | grep -v '^target' &>/dev/null 
