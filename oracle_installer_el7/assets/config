@@ -27,7 +27,7 @@ NEW_ENV="true"
 # check running oracle processes
 CHECK_ORACLE_PID="True"
 # check system release
-CHECK_SYSTEM_RELEASE="true"
+CHECK_SYSTEM_RELEASE="false"
 MOTHOD_INSTALL_OCFS="false"
 # setting the kernel parameter 
 SET_KERNEL_PARAMETERS="True"
@@ -48,7 +48,7 @@ CHANGE_PRIMARY_GROUP="false"
 INSTALL_OCFS_MODULE="false"
 INSTALL_PACKAGES="true"
 # sys default release
-SYS_RELEASE=6
+SYS_RELEASE=7
 #
 CHECK_ZIP_FILE="true"
 #
@@ -68,7 +68,7 @@ LOG_FILES=$2
 TIME="date +%Y-%m-%d_%H:%M:%S"
 #
 PACKAGES_OS6="binutils.x86_64 compat-libstdc++-33 ksh elfutils-libelf elfutils-libelf-devel glibc glibc-common glibc-devel gcc gcc-c++ libaio libaio-devel libaio-devel.i686 libgcc libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel"
-PACKAGES_OS7="binutils.x86_64 compat-libcap cpp gcc gcc-c++ glibc glibc-devel glibc-devel glibc-headers ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel libXi libXtst make mpfr sysstat unixODBC unixODBC-devel"
+PACKAGES_OS7='binutils* compat-libcap* compat-libstdc++*.i686 compat-libstdc++* gcc* gcc-c++* glibc-*.i686 glibc-*.x86_64 glibc-devel-*.i686 glibc-devel-*.x86_64  ksh libaio-*.i686  libaio-*.x86_64  libaio-devel-*.i686  libaio-devel-*.x86_64 libgcc-*.i686  libgcc-*.x86_64  libstdc++-*.i686 libstdc++-*.x86_64 libstdc++-devel-*.i686  libstdc++-devel-*.x86_64  libXi-*.i686  libXi-*.x86_64  libXtst-*.i686 libXtst-*.x86_64 make-*.x86_64 sysstat-*.x86_64'
 #
 # kernel parameters 
 KERNEL_PARAMETERS_FILE=

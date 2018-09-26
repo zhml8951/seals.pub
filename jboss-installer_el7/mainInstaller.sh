@@ -142,8 +142,9 @@ function set_firewall () {
 	fi
 
 	# Add firewall allow port $IP_PORT for web  and redirect t0  $JBOSSS_PORT
-    firewall-cmd --add-port=$JBOSS_PORT/tcp --permanent
-    firewall-cmd --add-forward-port=port=$IP_PORT:proto=tcp:toport=$JBOSS_PORT --permanent
+    firewall-cmd --add-port=$JBOSS_PORT/tcp
+    firewall-cmd --add-forward-port=port=$IP_PORT:proto=tcp:toport=$JBOSS_PORT
+    firewall-cmd --runtime-to-permanent
 }
 
 # check the host and natwork
